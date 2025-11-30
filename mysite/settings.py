@@ -79,11 +79,27 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 长轮询、事件流等现代 Web 功能 """
 ASGI_APPLICATION = "mysite.asgi.application"
 
+# 配置 Channels 的消息通道后端
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels.layers.InMemoryChannelLayer',
     }
 }
+
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": ['.'],  # 表示也在根目录下查找模板
+        "APP_DIRS": True, #允许每个 app 自动加载自己目录下的 templates/ 文件夹中的页面
+        "OPTIONS": {
+            "context_processors": [   #上下文处理器：添加了 request, auth, messages，方便在模板中使用用户登录状态等信息
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
