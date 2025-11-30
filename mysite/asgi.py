@@ -17,6 +17,7 @@ import chat.routing
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')    
 # 设置环境变量：告诉Django使用哪个settings文件（这里用的是mysite/settings.py）
+
 django_asgi_app = get_asgi_application()                              
 # 创建一个标准的Django ASGI应用，用于处理所有HTTP请求（如加载网页、表单提交等）
 
